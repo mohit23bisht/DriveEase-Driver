@@ -1,7 +1,11 @@
+import 'package:driveease_driver/core/router/router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../core/router/router.dart';
 import '../../../../core/theme/theme.dart';
+import '../cubit/splash_cubit.dart';
+import '../cubit/splash_state.dart';
+import '../widgets/splash_view.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -14,45 +18,31 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    // _initializeApp();
-  }
-
-  Future<void> _initializeApp() async {
-    // Simulate loading
-    await Future.delayed(const Duration(seconds: 2));
-
-    if (!mounted) return;
-
-    /// TODO:
-    /// Read JWT Token
-    /// Check Login Status
-    /// Initialize Firebase
-    /// Load User Profile
-    /// Check App Update
-    /// Request Permissions
-
-    final bool isLoggedIn = false;
-
-    // if (isLoggedIn) {
-    //   context.go(AppRoutes.home);
-    // } else {
-    //   context.go(AppRoutes.login);
-    // }
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<SplashCubit>().initializeApp();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: AppColors.darkBackground,
-        child: Center(
-          child: Image(
-            image: AssetImage('assets/images/logo.png'),
-            width: 400,
-            height: 400,
-          ),
-        ),
-      ),
+    return BlocListener<SplashCubit, SplashState>(
+      listener: (context, state) {
+        if (state is SplashLoaded) {
+          if (state.result.isLoggedIn) {
+            context.go(AppRoutes.main);
+          } else {
+            context.go(AppRoutes.login);
+          }
+        }
+
+        if (state is SplashError) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.message)));
+        }
+      },
+
+      child: const SplashView(),
     );
   }
 }

@@ -57,4 +57,20 @@ class AppTextTheme {
       color: AppColors.textWhite,
     ),
   );
+  static TextTheme dark = const TextTheme(
+  headlineLarge: TextStyle(
+    color: Colors.white,
+    fontWeight: FontWeight.bold,
+  ),
+  headlineMedium: TextStyle(
+    color: Colors.white,
+    fontWeight: FontWeight.bold,
+  ),
+  bodyLarge: TextStyle(
+    color: Colors.white,
+  ),
+  bodyMedium: TextStyle(
+    color: AppColors.darkTextSecondary,
+  ),
+);
 }

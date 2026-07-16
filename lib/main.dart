@@ -1,14 +1,11 @@
+import 'package:driveease_driver/core/providers/app_providers.dart';
 import 'package:driveease_driver/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import 'app.dart';
-
 import 'core/di/service_locator.dart';
 
-import 'core/widgets/app_restarter.dart';
-
 Future<void> main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
 
   /// Firebase.initializeApp();
@@ -17,18 +14,9 @@ Future<void> main() async {
 
   /// await Hive.initFlutter();
 
-  //await configureDependencies();
+  await configureDependencies();
 
-  runApp(
-
-    const AppRestarter(
-
-      child: App(),
-
-    ),
-
-  );
-
+  runApp(AppProviders(child: const App()));
 }
 
 class Sandbox extends StatelessWidget {

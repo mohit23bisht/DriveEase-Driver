@@ -1,13 +1,28 @@
 import 'package:get_it/get_it.dart';
 
+import '../../features/splash/splash.dart';
+
 final getIt = GetIt.instance;
 
 Future<void> configureDependencies() async {
-  // Register your dependencies here
 
-  // Example:
-  // getIt.registerLazySingleton<ApiClient>(() => ApiClient());
+  // Local Data Source
+  getIt.registerLazySingleton<SplashLocalDataSource>(
+    () => SplashLocalDataSource(),
+  );
 
-  // Example:
-  // getIt.registerFactory<AuthCubit>(() => AuthCubit(getIt()));
+  // Repository
+  getIt.registerLazySingleton<SplashRepository>(
+    () => SplashRepositoryImpl(getIt()),
+  );
+
+  // UseCase
+  getIt.registerLazySingleton<InitializeAppUseCase>(
+    () => InitializeAppUseCase(getIt()),
+  );
+
+  // Cubit
+  getIt.registerFactory<SplashCubit>(
+    () => SplashCubit(getIt()),
+  );
 }
