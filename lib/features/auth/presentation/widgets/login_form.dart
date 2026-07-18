@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:go_router/go_router.dart';
 import '../cubit/login_cubit.dart';
 import 'app_logo.dart';
 import 'app_text_field.dart';
@@ -137,7 +137,9 @@ class _LoginFormState extends State<LoginForm> {
                       const Text("Don't have an account?"),
                 
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          context.push('/signup');
+                        },
                         child: const Text("Sign Up"),
                       ),
                     ],

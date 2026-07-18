@@ -41,6 +41,10 @@ dependencies:
   flutter_secure_storage: ^10.3.1
   flutter_animate: ^4.5.2
   google_fonts: ^8.1.0
+  firebase_core: ^4.12.1
+  fpdart: ^1.2.0
+  firebase_auth: ^6.5.6
+  mockito: ^5.7.0
 
 
 dev_dependencies:

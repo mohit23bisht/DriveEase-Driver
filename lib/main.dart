@@ -1,5 +1,6 @@
 import 'package:driveease_driver/core/providers/app_providers.dart';
 import 'package:driveease_driver/core/theme/app_colors.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'app.dart';
@@ -8,7 +9,8 @@ import 'core/di/service_locator.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  /// Firebase.initializeApp();
+   Firebase.initializeApp();
+    
 
   /// await dotenv.load();
 

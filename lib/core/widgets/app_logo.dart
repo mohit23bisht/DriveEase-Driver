@@ -15,9 +15,9 @@ class AppLogo extends StatelessWidget {
 
   const AppLogo({
     super.key,
-    this.logoSize = 90,
-    this.showTitle = true,
-    this.showSubtitle = true,
+    this.logoSize = 250,
+    this.showTitle = false,
+    this.showSubtitle = false,
     this.title = "DriveEase",
     this.subtitle = "Drive Smarter. Earn Better.",
   });
@@ -32,44 +32,13 @@ class AppLogo extends StatelessWidget {
       children: [
         Hero(
           tag: "app_logo",
-          child: Container(
+          child: Image.asset(
+            "assets/images/logo.png",
             width: logoSize,
-            height: logoSize,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(24),
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.primary.withOpacity(.35),
-                  blurRadius: 35,
-                  spreadRadius: 2,
-                ),
-              ],
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(24),
-              child: Image.asset(
-                "assets/images/logo.png",
-                fit: BoxFit.cover,
-              ),
-            ),
           ),
         ),
 
-        if (showTitle) ...[
-          const SizedBox(height: 20),
-
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 30,
-              fontWeight: FontWeight.w800,
-              color: isDark
-                  ? AppColors.darkTextPrimary
-                  : AppColors.textPrimary,
-              letterSpacing: .5,
-            ),
-          ),
-        ],
+       
 
         if (showSubtitle) ...[
           const SizedBox(height: 8),

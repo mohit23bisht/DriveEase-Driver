@@ -2,6 +2,8 @@ import 'package:driveease_driver/features/splash/splash.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
+import '../../features/auth/presentation/pages/signup_page.dart';
+
 import '../di/service_locator.dart';
 
 final router = GoRouter(
@@ -20,6 +22,7 @@ final router = GoRouter(
     ),
 
     GoRoute(path: '/login', builder: (_, __) => const LoginPage()),
+    GoRoute(path: '/signup', builder: (_, __) => const SignupPage()),
 
     // StatefulShellRoute.indexedStack(
     //   builder: (context, state, navigationShell) {
